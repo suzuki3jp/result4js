@@ -1,0 +1,33 @@
+{
+  "name": "result4js",
+  "version": "1.0.0",
+  "description": "Liberation from annoying try-catch blocks",
+  "private": false,
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "repository": "https://github.com/suzuki3jp/result4js ",
+  "homepage": "https://github.com/suzuki3jp/result4js#readme",
+  "scripts": {
+    "build": "tsc",
+    "test": "vitest run"
+  },
+  "keywords": [
+    "result",
+    "error handling",
+    "typescript",
+    "rust"
+  ],
+  "author": "suzuki3jp",
+  "license": "MIT",
+  "devDependencies": {
+    "@biomejs/biome": "^1.9.4",
+    "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/git": "^10.0.1",
+    "semantic-release": "^24.2.1",
+    "typescript": "^5.7.3",
+    "vitest": "^2.1.8"
+  }
+}

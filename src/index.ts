@@ -41,6 +41,26 @@ abstract class Base<S, E> {
     abstract throw(): S;
 
     /**
+     * Extracts the success value from the `Result` instance, throwing a mapped error if the result is failed.
+     * - **NOTE:**
+     * - When throwing `data` in `Failure`, it is not wrapped in an `Error` class.
+     * - Note the behavior when `data` does not extend the `Error` class.
+     * - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/throw#description
+     * @param mapper The function or string to be used to map the error value.
+     * @example
+     * ```ts
+     * function sum(a: any, b: any): Result<number, string> {
+     *     if (typeof a !== "number" && typeof b !== "number") return Err("Both arguments are not numbers");
+     *     return Ok(a + b);
+     * }
+     *
+     * const result = sum(1, 2).throwMap("This is likely a bug. Please report it on GitHub issues"); // It will throw an error with the message
+     * const result = sum("a", 2).throwMap((error) => new CustomError(error)); // CustomError: Both arguments are not numbers
+     * ```
+     */
+    abstract throwMap(mapper: string | ((data: E) => unknown)): S;
+
+    /**
      * Extracts the success value from the `Result` instance with returning a default value if the result is failed.
      * @param defaultValue The default value to be returned if the result is failed.
      * @returns The success value if the result is successful, otherwise the default value.
@@ -79,6 +99,10 @@ class Success<S, E> extends Base<S, E> {
         return this.data;
     }
 
+    throwMap(mapper: string | ((data: E) => unknown)): S {
+        return this.data;
+    }
+
     or(defaultValue: S): S {
         return this.data;
     }
@@ -107,6 +131,11 @@ class Failure<S, E> extends Base<S, E> {
 
     throw(): S {
         throw this.data;
+    }
+
+    throwMap(mapper: string | ((data: E) => unknown)): S {
+        if (typeof mapper === "function") throw mapper(this.data);
+        throw mapper;
     }
 
     or(defaultValue: S): S {

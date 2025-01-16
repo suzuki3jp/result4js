@@ -69,6 +69,8 @@ abstract class Base<S, E> {
  * @internal This class is internal and should not be used directly.
  */
 class Success<S, E> extends Base<S, E> {
+    private readonly _tag = "Success";
+
     constructor(public data: S) {
         super(data);
     }
@@ -97,6 +99,8 @@ class Success<S, E> extends Base<S, E> {
  * @internal This class is internal and should not be used directly.
  */
 class Failure<S, E> extends Base<S, E> {
+    private readonly _tag = "Failure";
+
     constructor(public data: E) {
         super(data);
     }

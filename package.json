@@ -1,6 +1,6 @@
 {
   "name": "result4js",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Liberation from annoying try-catch blocks",
   "private": false,
   "main": "dist/index.js",

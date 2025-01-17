@@ -4,6 +4,10 @@
 <p align="center"> <em>Liberation from annoying try-catch blocks</em>
 </p>
 
+![NPM Version](https://img.shields.io/npm/v/result4js)
+![NPM Downloads](https://img.shields.io/npm/dm/result4js)
+
+
 ## Highlights
 - Type-safe error handling
 - Similar to Rust's [`std::Result`](https://doc.rust-lang.org/std/result/)
